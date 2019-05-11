@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Upload</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript">
+
+
+		function login(){
+			var em=document.getElementById("email").value;
+			var pass=document.getElementById("password").value;
+		    $.ajax({
+			type : 'POST',
+			url : "{{url_for('logi')}}",
+			data : { email : em , password:pass },
+    		})
+    		.done(function(data){
+    			if(data=="1"){
+    				window.location.replace('{{ url_for('new_page') }}');
+    			}
+    			else {
+    				alert("Invalid Email Password");
+    			}
+    		});
+		}
+
+	</script>
+</head>
+<body>
+<h1>My Personal Website</h1>
+<p>Hi, this is my personal website.</p>
+
+<!-- <button onclick="location.href='{{ url_for('new_page') }}'"> Click here to go to new page </button> <br> -->
+
+
+
+<form>
+
+	Email Id :   <input type="email" name="Input Email" id="email"> <br><br>
+
+	Password :  <input type="password" name="Input Password" id="password"> <br><br>
+
+	<input type="button" name="Login" onclick="login()" value="Login"><br>
+	
+
+	<button onclick="location.href='{{ url_for('signupp') }}'">Signup </button>
+
+<br><br>
+
+<!-- 	<input type="file" accept="image/*" id="image" onchange=""> <br>
+	<input type="button" name="Submit Image" onclick="getImage()" value="Submit"> -->
+	</form>
+</body>
+</html>
